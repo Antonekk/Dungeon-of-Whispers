@@ -8,10 +8,27 @@ public class GameManager : MonoBehaviour
     public int min_enemies_per_room;
     public int max_enemies_per_room;
     public GameObject player;
-    void Start()
+
+    public static GameManager GMInstance;
+
+
+    void Awake()
     {
+
+
+        if (GMInstance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        // end of new code
+
+        GMInstance = this;
+        DontDestroyOnLoad(gameObject);
+
         min_enemies_per_room = game_level;
         max_enemies_per_room = 2 * game_level;
+
 
     }
 

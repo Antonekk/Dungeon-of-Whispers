@@ -179,6 +179,21 @@ MonoBehaviour:
   basic_atack_damage: 0
   is_alive: 0
   can_atack: 0
+  enemy_death:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -308428580647463061, guid: 0d5bf0e9941cd614c9e0dd3aa646e8f7, type: 3}
+        m_TargetAssemblyTypeName: Room, Assembly-CSharp
+        m_MethodName: UpdateDoors
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1951811002611764589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb2f2fe987ec4f042a96cfcc71bb4d83, type: 3}
@@ -236,6 +251,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0a235ec58d86a4c468cedcca6868c1db, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: acd8f714506fd6540a36a074eb7f1491, type: 2}
     - target: {fileID: 919132149155446097, guid: 0a235ec58d86a4c468cedcca6868c1db, type: 3}
       propertyPath: m_Name
       value: skull

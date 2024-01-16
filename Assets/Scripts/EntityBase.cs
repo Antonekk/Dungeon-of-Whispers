@@ -37,7 +37,7 @@ public class EntityBase : MonoBehaviour
     }
 
 
-    void ActionOnDeath()
+     protected virtual void ActionOnDeath()
     {
         current_hp = 0;
         is_alive = false;

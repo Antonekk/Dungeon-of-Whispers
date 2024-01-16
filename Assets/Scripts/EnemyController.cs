@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class EnemyController : EntityBase
 {
+
+    Room enemy_room;
+    UnityEvent check_for_empty_room;
+
     void Start()
     {
+        enemy_room = transform.parent.parent.GetComponent<Room>();
+        check_for_empty_room.AddListener(enemy_room.CheckForEmpytyRoom);
         max_hp = 5;
         current_hp = max_hp;
         atack_speed = 0.25f;
@@ -24,5 +31,12 @@ public class EnemyController : EntityBase
             StartCoroutine(BasicAtackCooldown());
 
         }
+    }
+
+    override protected void ActionOnDeath()
+    {
+        current_hp = 0;
+        is_alive = false;
+        Destroy(gameObject);
     }
 }
