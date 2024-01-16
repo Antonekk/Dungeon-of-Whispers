@@ -83,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb2f2fe987ec4f042a96cfcc71bb4d83, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4463071323243141018}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eb2f2fe987ec4f042a96cfcc71bb4d83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1373361940524143113}
   m_SourcePrefab: {fileID: 100100000, guid: eb2f2fe987ec4f042a96cfcc71bb4d83, type: 3}
 --- !u!1 &1179355312976549847 stripped
 GameObject:
@@ -131,10 +134,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4051778
+  m_Radius: 0.55833435
   m_Height: 1.7305971
   m_Direction: 1
-  m_Center: {x: 0, y: 0.86208993, z: -0.006903082}
+  m_Center: {x: 0.0067863464, y: 0.86208993, z: -0.0069030523}
 --- !u!114 &8894798204160775410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,21 +182,108 @@ MonoBehaviour:
   basic_atack_damage: 0
   is_alive: 0
   can_atack: 0
-  enemy_death:
+  enemy_room: {fileID: 0}
+  check_for_empty_room:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -308428580647463061, guid: 0d5bf0e9941cd614c9e0dd3aa646e8f7, type: 3}
-        m_TargetAssemblyTypeName: Room, Assembly-CSharp
-        m_MethodName: UpdateDoors
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  Drop: {fileID: 6018179974488325278, guid: 5a7b3e35190599c45a7f253ba0e40fb7, type: 3}
+  particle_on_death: {fileID: 5985634496115995773, guid: d60c3acfd224f74418b62c169efab673, type: 3}
+--- !u!82 &1373361940524143113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179355312976549847}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 220c72a138b3fbe4e9372c85fab3f6d6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.423
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1951811002611764589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: eb2f2fe987ec4f042a96cfcc71bb4d83, type: 3}

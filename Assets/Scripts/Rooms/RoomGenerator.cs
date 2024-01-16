@@ -33,14 +33,12 @@ public class RoomGenerator : MonoBehaviour
         rooms_layout = new GameObject[(room_count*2)+3, (room_count * 2) + 3];
         //wyliczamy œrodkowy index dla startowego pola
         int spawn_room_index = ((room_count * 2) + 3) / 2;
-        Debug.Log(spawn_room_index);
 
 
         spawn = Instantiate(roompref, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 1), rooms_storage);
         spawn.GetComponent<Room>().is_starting_point = true; //Change
         rooms.Add(spawn);
         rooms_layout[spawn_room_index, spawn_room_index] = spawn;
-        Debug.Log(rooms_layout);
         for (int i = 1; i < room_count; i++)
         {
             AddRoom();

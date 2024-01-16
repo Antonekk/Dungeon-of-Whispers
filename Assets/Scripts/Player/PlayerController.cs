@@ -16,6 +16,8 @@ public class PlayerController : EntityBase
 
     public float dash_speed;
 
+    private AudioSource BasicAtackSound;
+
 
 
 
@@ -35,6 +37,7 @@ public class PlayerController : EntityBase
 
         can_atack = true;
         is_alive = true;
+        BasicAtackSound = transform.Find("SpellSound").GetComponent<AudioSource>();
 
     }
 
@@ -45,15 +48,16 @@ public class PlayerController : EntityBase
         HBC = GameObject.Find("HealthBarController").GetComponent<HealthBarController>();
         max_hp = 3;
         current_hp = max_hp;
-        atack_speed = 0.5f;
+        atack_speed = 0.30f;
         movement_speed = 5f;
         basic_atack_damage = 1;
-        dash_speed = 10f;
+        dash_speed = 70f;
     }
 
 
     void CastBasicAtack()
     {
+        BasicAtackSound.Play();
         playeranimator.Play("PlayerCastAnimation");
         StartCoroutine(BasicAtackCooldown());
         Instantiate(basic_atack_projectile, cast_point.position, cast_point.rotation);
@@ -67,6 +71,14 @@ public class PlayerController : EntityBase
         {
             CastBasicAtack();
         }
+    }
+
+    protected override void ActionOnDeath()
+    {
+        current_hp = 0;
+        is_alive = false;
+        UI.EndScreen();
+        Destroy(gameObject);
     }
 
 

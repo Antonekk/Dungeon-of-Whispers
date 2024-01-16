@@ -24,7 +24,7 @@ public class EntityBase : MonoBehaviour
     {
         current_hp = Mathf.Min(current_hp + hp, max_hp);
     }
-    public void Hurt(float damage)
+    public virtual void Hurt(float damage)
     {
         if(current_hp - damage <= 0)
         {

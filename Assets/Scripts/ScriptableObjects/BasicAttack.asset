@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BasicAttack
   m_EditorClassIdentifier: 
   damage: 0.75
-  speed: 10
+  speed: 25
   spell_name: BasicAttack

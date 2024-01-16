@@ -34,15 +34,14 @@ public class DoorLogic : MonoBehaviour
                     break;
                 case "ExitTop":
                     other.GetComponent<PlayerMovement>().Teleport(exit_room.GetComponent<Room>().exit_bottom.transform.position);
-                    Debug.Log("Updated");
                     break;
                 case "ExitLeft":
                     other.GetComponent<PlayerMovement>().Teleport(exit_room.GetComponent<Room>().exit_right.transform.position);
-                    Debug.Log("Updated");
+
                     break;
                 case "ExitRight":
                     other.GetComponent<PlayerMovement>().Teleport(exit_room.GetComponent<Room>().exit_left.transform.position);
-                    Debug.Log("Updated");
+
                     break;
                 default:
                     break;

@@ -9,18 +9,22 @@ public class EnemyController : EntityBase
 
     public Room enemy_room;
     public UnityEvent check_for_empty_room = new();
-    public float dashspeed;
+    public GameObject Drop;
+    private float chance_to_drop;
+    public GameObject particle_on_death;
+    private AudioSource get_hit;
 
     void Start()
     {
+        get_hit = GetComponent<AudioSource>();
         enemy_room = transform.parent.parent.GetComponent<Room>();
         check_for_empty_room.AddListener(enemy_room.CheckForEmpytyRoom);
         max_hp = 5;
         current_hp = max_hp;
         atack_speed = 0.25f;
-        movement_speed = 5f;
-        basic_atack_damage = 0.25f;
-        dashspeed = 10f;
+        movement_speed = 8f;
+        basic_atack_damage = 0.75f;
+        chance_to_drop = 33f;
     }
 
 
@@ -34,10 +38,35 @@ public class EnemyController : EntityBase
         }
     }
 
-    private void OnDestroy()
+
+    protected override void ActionOnDeath()
     {
+        current_hp = 0;
+        is_alive = false;
+        if (Randomizer.RollD100(chance_to_drop))
+        {
+            Instantiate(Drop, transform.position, Quaternion.identity);
+        }
+        Instantiate(particle_on_death, transform.position + new Vector3(0,1.5f,0), Quaternion.identity);
+
         check_for_empty_room.Invoke();
+        Destroy(gameObject);
     }
+
+
+    public override void Hurt(float damage)
+    {
+        get_hit.Play();
+        if (current_hp - damage <= 0)
+        {
+            ActionOnDeath();
+        }
+        else
+        {
+            current_hp -= damage;
+        }
+    }
+
 
 
 }

@@ -54,4 +54,12 @@ public class Randomizer : MonoBehaviour
         list[j] = temp;
     }
 
+    public static bool RollD100(float value)
+    {
+        System.Random random = new System.Random();
+        float num = random.Next(0, 100);
+        return (num <= value);
+      
+    }
+
 }

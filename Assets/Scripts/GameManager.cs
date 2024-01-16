@@ -26,11 +26,22 @@ public class GameManager : MonoBehaviour
         GMInstance = this;
         DontDestroyOnLoad(gameObject);
 
-        min_enemies_per_room = game_level;
-        max_enemies_per_room = 2 * game_level;
+        CorrectEnemies();
 
 
     }
+
+    private static void CorrectEnemies()
+    {
+        GMInstance.min_enemies_per_room = GMInstance.game_level;
+        GMInstance.max_enemies_per_room = 2 * GMInstance.game_level;
+    }
+    public static void UpdateLevel()
+    {
+        CorrectEnemies();
+        GMInstance.game_level += 1;
+    }
+
 
     // Update is called once per frame
     void Update()
