@@ -14,6 +14,8 @@ public class PlayerController : EntityBase
     Vector3 player_starting_position = new(-0.416496277f, 1.57000005f, 6.27987576f);
     Vector3 player_starting_rotation = new(9.33466799e-06f, 0f, 0f);
 
+    public float dash_speed;
+
 
 
 
@@ -46,6 +48,7 @@ public class PlayerController : EntityBase
         atack_speed = 0.5f;
         movement_speed = 5f;
         basic_atack_damage = 1;
+        dash_speed = 10f;
     }
 
 

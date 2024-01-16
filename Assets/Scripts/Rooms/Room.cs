@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
@@ -34,9 +35,13 @@ public class Room : MonoBehaviour
     public GameObject wallpref;
 
     public GameObject exit_door;
+    private Transform enemies;
+
+    public UnityEvent change_doors_color;
 
     private void Awake()
     {
+        enemies = transform.Find("Enemies");
         exit_door = transform.Find("Exit").gameObject;
     }
 
@@ -46,7 +51,9 @@ public class Room : MonoBehaviour
         {
             UpdateDoors();
             is_empty = true;
+            change_doors_color.Invoke();
         }
+
     }
 
 
@@ -80,6 +87,7 @@ public class Room : MonoBehaviour
         {
             obj = Instantiate(doorpref, point.transform.position, point.transform.rotation, transform);
             obj.GetComponent<DoorLogic>().exit_room = exit_door_room;
+            change_doors_color.AddListener(obj.GetComponent<DoorLogic>().ChangeDoorColor);
         }
         else
         {
@@ -95,6 +103,11 @@ public class Room : MonoBehaviour
 
     public void CheckForEmpytyRoom()
     {
-        //
+        if(enemies.childCount == 1)
+        {
+            is_empty = true;
+            change_doors_color.Invoke();
+
+        }
     }
 }

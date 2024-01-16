@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DoorLogic : MonoBehaviour
@@ -11,13 +13,14 @@ public class DoorLogic : MonoBehaviour
     private Vector3 horizontal_offset = new(30.0f, 0, 0);
     private Vector3 vertical_offset = new(0.0f, 0, 17.7f);
 
-    void Start()
+
+    public Transform doors_open;
+    public Transform doors_closed;
+
+    void Awake()
     {
         main_camera = GameObject.Find("Main Camera");
         parent_room_script = GetComponentInParent<Room>();
-        if(!parent_room_script.is_empty) {
-            GetComponent<BoxCollider>().isTrigger = false;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,4 +51,12 @@ public class DoorLogic : MonoBehaviour
 
         }
     }
+
+    public void ChangeDoorColor()
+    {
+        doors_open.gameObject.SetActive(true);
+        doors_closed.gameObject.SetActive(false);
+
+    }
+
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class EntityMovement : MonoBehaviour
 {
@@ -24,15 +25,27 @@ public class EntityMovement : MonoBehaviour
 
     public void EntityRotation(Vector3 rotate_point)
     {
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(rotate_point.x, rotate_point.y, 10f));
+        Vector3 worldPosition;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitData;
+        if (Physics.Raycast(ray, out hitData, 1000))
+        {
+            worldPosition = hitData.point;
+            worldPosition.y = 0f; // Ensure the z-coordinate is in the same plane as the player
 
-        // Calculate the direction from the character to the mouse position
-        Vector3 direction = mouseWorldPosition - transform.position;
+            // Calculate the direction from the player to the mouse
+            Vector3 lookDirection = worldPosition - transform.position;
 
-        // Calculate the rotation angle only on the Y-axis
-        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            // Calculate the angle in degrees
+            float angle = Mathf.Atan2(lookDirection.x, lookDirection.z) * Mathf.Rad2Deg;
 
-        // Rotate the character towards the mouse position (only on Y-axis)
-        transform.rotation = Quaternion.Euler(0, angle, 0);
+            // Rotate the player around the Z-axis
+            transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+
+        }
+
+        
+
+
     }
 }

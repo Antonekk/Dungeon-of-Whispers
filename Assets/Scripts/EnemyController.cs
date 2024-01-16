@@ -7,8 +7,9 @@ using UnityEngine.UIElements;
 public class EnemyController : EntityBase
 {
 
-    Room enemy_room;
-    UnityEvent check_for_empty_room;
+    public Room enemy_room;
+    public UnityEvent check_for_empty_room = new();
+    public float dashspeed;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class EnemyController : EntityBase
         atack_speed = 0.25f;
         movement_speed = 5f;
         basic_atack_damage = 0.25f;
+        dashspeed = 10f;
     }
 
 
@@ -26,17 +28,16 @@ public class EnemyController : EntityBase
     {
         if (can_atack && other.CompareTag("Player"))
         {
-            Debug.Log("Hit");
             other.GetComponent<PlayerController>().Hurt(basic_atack_damage);
             StartCoroutine(BasicAtackCooldown());
 
         }
     }
 
-    override protected void ActionOnDeath()
+    private void OnDestroy()
     {
-        current_hp = 0;
-        is_alive = false;
-        Destroy(gameObject);
+        check_for_empty_room.Invoke();
     }
+
+
 }
